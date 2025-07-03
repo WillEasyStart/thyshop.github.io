@@ -1,0 +1,109 @@
+---
+layout: default
+---
+
+{% include profile-card.html %}
+
+<!-- Portfolio Section -->
+<div class="glass-card rounded-2xl p-4 mb-3 shadow-xl relative portfolio-section">
+  <div class="portfolio-toggle-container">
+    <button id="portfolioToggle" class="glass-card portfolio-toggle" aria-label="Switch view" role="switch"
+      aria-checked="false">
+      <span class="portfolio-toggle-slider"></span>
+    </button>
+  </div>
+  <h3 class="font-semibold text-lg mb-3">
+    <span class="gradient-text inline-block" id="portfolioSectionTitle">Blog</span>
+  </h3>
+  <div class="category-filter-container">
+    <div class="category-filters" id="categoryFilters">
+      <button class="category-filter active" data-category="All" onclick="filterCards('All')">All</button>
+      {% assign all_categories = site.posts | map: 'categories' | compact | uniq %}
+      {% for category_list in all_categories %}
+        {% for category in category_list %}
+          <button class="category-filter" data-category="{{ category }}" onclick="filterCards('{{ category }}')">{{ category }}</button>
+        {% endfor %}
+      {% endfor %}
+    </div>
+  </div>
+  <div class="shop-container hidden" id="shopContainer">
+    {% for item in site.shop_items %}
+      <div class="shop-card glass-card fade-in" data-category="{{ item.category }}">
+        <div class="shop-image image-loading">
+          <img data-src="{{ item.image | relative_url }}" alt="{{ item.title }}" width="200" height="300" class="lazy-img" loading="lazy">
+          <div class="shop-overlay">
+            <h3 class="shop-title">{{ item.title }}</h3>
+            <div class="shop-price">
+              <span class="shop-price-current">{{ item.price }}</span>
+              <span class="shop-price-original">{{ item.original_price }}</span>
+            </div>
+            <p class="shop-description">{{ item.description }}</p>
+            <div class="shop-actions">
+              <a href="{{ item.stripe_link }}" target="_blank" rel="noopener noreferrer" class="shop-buy-btn">
+                <i data-lucide="shopping-bag" class="w-4 h-4"></i> Buy Now
+              </a>
+              <button class="shop-info-btn" data-item-id="{{ item.id }}">
+                <i data-lucide="info" class="w-4 h-4"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  <div class="blog-container" id="blogContainer">
+    {% for post in site.posts %}
+      <div class="blog-card fade-in" data-category="{% for category in post.categories %}{{ category }}{% unless forloop.last %},{% endunless %}{% endfor %}" onclick="window.location.href='{{ post.url | relative_url }}'">
+        <div class="blog-image image-loading">
+          <img data-src="{{ post.image | relative_url }}" alt="{{ post.title }}" width="300" height="135" class="lazy-img" loading="lazy">
+          <div class="blog-category">{% for category in post.categories %}{{ category }}{% unless forloop.last %}, {% endunless %}{% endfor %}</div>
+        </div>
+        <div class="blog-content">
+          <h3 class="blog-title">{{ post.title }}</h3>
+          <p class="blog-excerpt">{{ post.description }}</p>
+          <div class="blog-meta">
+            <div class="author-info">
+              <img src="{{ site.author_avatar }}" alt="Author" class="author-avatar" width="36" height="36" loading="lazy">
+              <div class="author-details">
+                <span class="author-name">{{ post.author }}</span>
+                <span class="post-date">{{ post.date | date: "%b %d, %Y" }}</span>
+              </div>
+            </div>
+            <span class="read-time">⏱️ {{ post.read_time }}</span>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- Action Buttons -->
+<div class="flex gap-2 mb-4">
+  <a href="#" class="action-btn glass-card rounded-xl p-3 flex items-center space-x-3 min-h-[60px] shadow-xl flex-1"
+    data-section="contact">
+    <div class="opacity-20 w-10 h-10 rounded-lg flex items-center justify-center text-lg">
+      <i class="fas fa-envelope"></i>
+    </div>
+    <div class="flex-1">
+      <h3 class="font-semibold text-base gradient-text">
+        Contact
+      </h3>
+      <p class="text-xs opacity-70">
+        Get in touch
+      </p>
+    </div>
+    <div class="opacity-70">
+      <i class="fas fa-chevron-right text-sm"></i>
+    </div>
+  </a>
+
+  <a href="#" class="action-btn glass-card rounded-xl p-3 flex items-center justify-center min-h-[60px] w-[60px] shadow-xl"
+    data-section="chatbot" aria-label="Chat Bot">
+    <i class="fas fa-robot text-xl fa-gradient"></i>
+  </a>
+</div>
+
+{% include contact-modal.html %}
+{% include shop-item-modal.html %}
+
+

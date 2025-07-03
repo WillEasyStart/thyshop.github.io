@@ -1,0 +1,72 @@
+title: Will Napolini
+email: your-email@example.com
+description: 'Mindset • Skillset • Toolset'
+baseurl: '/thyshop.github.io' # the subpath of your site, e.g. /blog
+url: 'https://thyshop.github.io' # the base hostname & protocol for your site, e.g. http://example.com
+repository: 'thyshop/thyshop.github.io'
+
+# Build settings
+markdown: kramdown
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Collections
+collections:
+  posts:
+    output: true
+    permalink: /blog/:title/
+  shop_items:
+    output: true
+    permalink: /shop/:title/
+
+# Default values for posts
+defaults:
+  - scope:
+      path: ''
+      type: 'posts'
+    values:
+      layout: 'post'
+      author: 'Will Napolini'
+      image: '/assets/images/default-blog-image.jpg'
+  - scope:
+      path: ''
+      type: 'shop_items'
+    values:
+      layout: 'shop_item'
+      image: '/assets/images/default-shop-image.jpg'
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - package.json
+  - package-lock.json
+  - README.md
+  - todo.md
+
+# SEO Tag settings
+seo_tag:
+  image: /assets/icons/icon-512x512.png
+  twitter:
+    username: willnapolini
+  social:
+    name: Will Napolini
+    links:
+      - https://twitter.com/willnapolini
+      - https://github.com/willnapolini
+      - https://instagram.com/willnapolini
+      - https://t.me/willnapolini
+
+# PWA settings
+service_worker:
+  src: /sw.js
+  scope: /
+
+# Custom variables (for use in layouts)
+author_avatar: 'https://avatars.githubusercontent.com/u/192521042?v=4'
+
+

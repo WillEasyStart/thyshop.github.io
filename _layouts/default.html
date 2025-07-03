@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Basic Meta -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ page.title }} | {{ site.title }}</title>
+  
+  <!-- PWA Essentials -->
+  <meta name="theme-color" content="#000000"/>
+  <link rel="manifest" href="{{ site.baseurl }}/manifest.json">
+  <link rel="icon" href="{{ site.baseurl }}/assets/icons/icon-192x192.png">
+  <link rel="apple-touch-icon" href="{{ site.baseurl }}/assets/icons/icon-192x192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="{{ site.title }}">
+
+  <!-- Preload Critical Assets -->
+  <link rel="preload" href="{{ site.baseurl }}/assets/icons/icon-192x192.png" as="image">
+  <link rel="preload" href="{{ site.baseurl }}/assets/icons/icon-512x512.png" as="image">
+
+  <!-- External Resources -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css">
+
+  <!-- Jekyll SEO Tag -->
+  {% seo %}
+</head>
+
+<body class="light-mode">
+  <!-- PWA Loading Indicator -->
+  <div class="pwa-loader" id="pwaLoader">
+    <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-black"></div>
+  </div>
+
+  <!-- Install Button -->
+  <button id="installButton" class="fixed bottom-4 right-4 bg-gradient-to-r from-[#28F29C] to-[#0CB8E0] text-white px-4 py-2 rounded-full shadow-lg z-50 hidden">
+    <i class="fas fa-download mr-2"></i> Install App
+  </button>
+
+  <!-- App Content -->
+  <div class="app-content">
+    {{ content }}
+  </div>
+
+  <!-- Custom JavaScript -->
+  <script src="{{ site.baseurl }}/assets/js/main.js"></script>
+
+  <!-- PWA Service Worker Registration -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('pwaLoader').style.display = 'none';
+      
+      // Install Prompt Handler
+      const installButton = document.getElementById('installButton');
+      let deferredPrompt;
+
+      window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        installButton.classList.remove('hidden');
+        
+        installButton.addEventListener('click', async () => {
+          installButton.classList.add('hidden');
+          deferredPrompt.prompt();
+          const { outcome } = await deferredPrompt.userChoice;
+          console.log(`User ${outcome} the install prompt`);
+          deferredPrompt = null;
+        });
+      });
+
+      window.addEventListener('appinstalled', () => {
+        console.log('PWA installed successfully');
+        installButton.classList.add('hidden');
+      });
+
+      // Dynamic Service Worker Registration
+      const basePath = window.location.pathname.startsWith('{{ site.baseurl }}') 
+        ? '{{ site.baseurl }}' 
+        : '';
+      
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register(`${basePath}/sw.js`, { 
+          scope: basePath || '/' 
+        }).then(reg => {
+          console.log('Service Worker registered for scope:', reg.scope);
+        }).catch(err => {
+          console.error('Service Worker registration failed:', err);
+        });
+      }
+    });
+  </script>
+  
+  <!-- Initialize Lucide icons -->
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>
+

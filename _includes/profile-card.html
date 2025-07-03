@@ -1,0 +1,42 @@
+<!-- Profile Section -->
+<div class="glass-card profile-card rounded-2xl p-4 mb-3 shadow-xl relative">
+  <div class="controls-container flex justify-end items-center mb-4">
+    <div class="theme-toggle-container">
+      <button id="themeToggle" class="glass-card w-10 h-10 rounded-full flex items-center justify-center theme-btn"
+        aria-label="Toggle dark mode">
+        <i class="fas fa-sun theme-icon fa-gradient"></i>
+      </button>
+    </div>
+  </div>
+  <div class="flex justify-center mb-4">
+    <img src="{{ site.author_avatar }}" alt="Will Napolini" width="96" height="96"
+      class="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover profile-img" loading="lazy" />
+  </div>
+  <h1 class="text-xl sm:text-2xl font-bold text-center mb-3">
+    <span class="gradient-text">{{ site.title }}</span>
+  </h1>
+  <p class="text-center opacity-80 mb-4 text-sm">
+    {{ site.description }}
+  </p>
+  <!-- Social Media Icons -->
+  <div class="grid grid-cols-4 gap-2 mb-4 px-1">
+    <a href="https://t.me/willnapolini" target="_blank" rel="noopener noreferrer"
+      class="social-icon glass-card rounded-xl p-3 flex items-center justify-center text-lg">
+      <i class="fab fa-telegram fa-gradient"></i>
+    </a>
+    <a href="https://twitter.com/willnapolini" target="_blank" rel="noopener noreferrer"
+      class="social-icon glass-card rounded-xl p-3 flex items-center justify-center text-lg">
+      <i class="fab fa-twitter fa-gradient"></i>
+    </a>
+    <a href="https://instagram.com/willnapolini" target="_blank" rel="noopener noreferrer"
+      class="social-icon glass-card rounded-xl p-3 flex items-center justify-center text-lg">
+      <i class="fab fa-instagram fa-gradient"></i>
+    </a>
+    <a href="https://github.com/willnapolini" target="_blank" rel="noopener noreferrer"
+      class="social-icon glass-card rounded-xl p-3 flex items-center justify-center text-lg">
+      <i class="fab fa-github fa-gradient"></i>
+    </a>
+  </div>
+</div>
+
+
