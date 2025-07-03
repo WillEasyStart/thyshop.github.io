@@ -598,9 +598,9 @@ p {
 
 .author-info {
   display: flex;
-  flex-direction: row; /* Changed from column to row for side-by-side layout */
-  align-items: center; /* Centers items vertically */
-  gap: 8px; /* Increased gap for better spacing */
+  flex-direction: column;
+  gap: 4px; /* Adjust this value as needed */
+  align-items: flex-start;
 }
 
 .author-avatar {
