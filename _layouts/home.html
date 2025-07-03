@@ -17,14 +17,11 @@ layout: default
   </h3>
   <div class="category-filter-container">
     <div class="category-filters" id="categoryFilters">
-      <button class="category-filter active" data-category="All" onclick="filterCards('All')">All</button>
-      {% assign all_categories = site.posts | map: 'categories' | compact | uniq %}
-      {% for category_list in all_categories %}
-        {% for category in category_list %}
-          <button class="category-filter" data-category="{{ category }}" onclick="filterCards('{{ category }}')">{{ category }}</button>
-        {% endfor %}
-      {% endfor %}
-    </div>
+  <button class="category-filter active" data-category="All" onclick="filterCards('All')">All</button>
+  <button class="category-filter" data-category="Mindset" onclick="filterCards('Mindset')">Mindset</button>
+  <button class="category-filter" data-category="Skillset" onclick="filterCards('Skillset')">Skillset</button>
+  <button class="category-filter" data-category="Toolset" onclick="filterCards('Toolset')">Toolset</button>
+</div>
   </div>
   <div class="shop-container hidden" id="shopContainer">
     {% for item in site.shop_items %}
