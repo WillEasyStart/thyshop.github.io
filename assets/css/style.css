@@ -598,9 +598,9 @@ p {
 
 .author-info {
   display: flex;
-  flex-direction: column;
-  gap: 2px;
-  align-items: flex-start;
+  flex-direction: row; /* Changed from column to row for side-by-side layout */
+  align-items: center; /* Centers items vertically */
+  gap: 8px; /* Increased gap for better spacing */
 }
 
 .author-avatar {
@@ -610,6 +610,13 @@ p {
   object-fit: cover;
   border: 2px solid rgba(255, 255, 255, 0.3);
   background: linear-gradient(135deg, #00FFED 0%, #00B8BA 50%);
+  flex-shrink: 0; /* Prevents avatar from shrinking */
+}
+
+.author-text {
+  display: flex;
+  flex-direction: column; /* Stacks name and date vertically */
+  gap: 2px; /* Small spacing between name and date */
 }
 
 .author-name {
@@ -619,15 +626,12 @@ p {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  white-space: nowrap; /* Prevents text from wrapping */
 }
 
 .post-date {
   font-size: 11px;
   color: rgba(0, 0, 0, 0.8);
-}
-
-.author-name, .post-date {
-  display: block;
 }
 
 .read-time {
