@@ -10,6 +10,13 @@ read_time: "5 min read"
 description: "How changing your mindset can transform your life and career in ways you never imagined possible."
 ---
 
+{% include telegram-banner.html 
+   url="https://t.me/will_reads"
+   title="⚡ Контент, которого нет в открытом доступе"
+   subtitle="Инсайты, туториалы и материалы только для подписчиков канала"
+   cta_text="ВОЙТИ В КАНАЛ"
+%}
+
 Your mindset is the foundation of everything you do. It shapes your perceptions, influences your decisions, and ultimately determines your outcomes. A positive, growth-oriented mindset can unlock incredible potential, allowing you to overcome challenges, learn from failures, and continuously evolve. Conversely, a fixed or negative mindset can limit your capabilities and prevent you from reaching your full potential.
 
 Cultivating a powerful mindset involves several key practices:
