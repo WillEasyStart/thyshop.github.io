@@ -4,17 +4,17 @@
   --radius: 16px;
   --border: 1px;
   --ease: cubic-bezier(0.4, 0, 0.2, 1);
-  
+
   /* Light Theme Colors */
   --bg: #f8fafc;
   --fg: #1a1a1a;
   --card-bg: rgba(255, 255, 255, 0.85);
   --border-color: rgba(0, 0, 0, 0.08);
   --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  
+
   /* Accent Gradient */
   --gradient: linear-gradient(135deg, #28F29C 0%, #0CB8E0 50%, #635DFF 100%);
-  
+
   /* Typography */
   --font-inter: 'Inter', system-ui, -apple-system, sans-serif;
   --text-shadow: none;
@@ -28,7 +28,7 @@
   --border-color: hsl(210, 32%, 25%);
   --shadow: 0 8px 32px rgba(12, 184, 224, 0.15);
   --text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  
+
   background: var(--bg);
   background-attachment: fixed;
 }
@@ -96,8 +96,15 @@ body {
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-12px) rotate(2deg); }
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-12px) rotate(2deg);
+  }
 }
 
 .profile-img:hover {
@@ -112,7 +119,8 @@ h1 {
   line-height: 1.2;
 }
 
-h2, h3 {
+h2,
+h3 {
   font-variation-settings: 'wght' 600;
 }
 
@@ -590,41 +598,45 @@ p {
 
 .author-info {
   display: flex;
-  align-items: center;
-  gap: 6px;
+  flex-direction: column;
+  gap: 2px;
+  align-items: flex-start;
 }
 
-    .author-avatar {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      background: linear-gradient(135deg, #00FFED 0%, #00B8BA 50%);
-    }
+.author-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  background: linear-gradient(135deg, #00FFED 0%, #00B8BA 50%);
+}
 
-    .author-name {
-      font-size: 13px;
-      font-weight: 600;
-      background: linear-gradient(135deg, #00FFED 0%, #00B8BA 50%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
+.author-name {
+  font-size: 13px;
+  font-weight: 600;
+  background: linear-gradient(135deg, #00FFED 0%, #00B8BA 50%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
 
-    .post-date {
-      font-size: 11px;
-      color: rgba(0, 0, 0, 0.8);
-      margin-top: 2px;
-    }
+.post-date {
+  font-size: 11px;
+  color: rgba(0, 0, 0, 0.8);
+}
 
-    .read-time {
-      font-size: 11px;
-      color: rgba(0, 0, 0, 0.8);
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
+.author-name, .post-date {
+  display: block;
+}
+
+.read-time {
+  font-size: 11px;
+  color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
 
 .dark-mode .blog-excerpt,
 .dark-mode .post-date,
@@ -698,6 +710,7 @@ p {
     opacity: 0;
     transform: translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -774,6 +787,7 @@ textarea:focus {
   0% {
     transform: translateX(-100%);
   }
+
   100% {
     transform: translateX(100%);
   }
@@ -832,7 +846,8 @@ textarea:focus {
 }
 
 /* Form Inputs */
-input, textarea {
+input,
+textarea {
   background: rgba(255, 255, 255, 0.8);
   color: #1a1a1a;
   border: var(--border) solid var(--border-color);
@@ -879,7 +894,8 @@ input, textarea {
 }
 
 /* Form Focus States */
-input:focus, textarea:focus {
+input:focus,
+textarea:focus {
   outline: none;
   border-color: #28F29C;
   box-shadow: 0 0 0 2px rgba(0, 255, 237, 0.2);
@@ -891,7 +907,8 @@ input:focus, textarea:focus {
 }
 
 /* Shop and Blog Modal Specific Styles */
-.shop-modal-category, .blog-modal-category {
+.shop-modal-category,
+.blog-modal-category {
   background: linear-gradient(135deg, #28F29C 0%, #0CB8E0 50%);
   color: white;
   display: inline-block;
@@ -944,6 +961,7 @@ input:focus, textarea:focus {
     transform: translateX(100%);
     opacity: 0;
   }
+
   to {
     transform: translateX(0);
     opacity: 1;
@@ -1026,6 +1044,7 @@ input:focus, textarea:focus {
 }
 
 @media (prefers-reduced-motion) {
+
   .shop-card,
   .blog-card,
   .modal-container {
