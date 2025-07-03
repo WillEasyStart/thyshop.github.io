@@ -13,6 +13,11 @@ plugins:
   - jekyll-sitemap
   - jekyll-seo-tag
 
+# Sass configuration
+sass:
+  sass_dir: _sass
+  style: compressed
+
 # Collections
 collections:
   posts:
@@ -68,5 +73,3 @@ service_worker:
 
 # Custom variables (for use in layouts)
 author_avatar: 'https://avatars.githubusercontent.com/u/192521042?v=4'
-
-
