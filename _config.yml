@@ -117,7 +117,7 @@ pwa:
     start_url: '/'
     background_color: '#ffffff'
     theme_color: '#0CB8E0'
-    display: standalone
+    display: fullscreen
     icons:
       - src: '/assets/icons/icon-192x192.png'
         sizes: '192x192'
