@@ -1,28 +1,73 @@
+# Site Metadata
 title: Will Napolini
 email: your-email@example.com
 description: 'Mindset • Skillset • Toolset'
-baseurl: '/thyshop.github.io' # the subpath of your site, e.g. /blog
-url: 'https://thyshop.github.io' # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: '/thyshop.github.io'
+url: 'https://thyshop.github.io'
 repository: 'thyshop/thyshop.github.io'
+lang: en-US
+timezone: America/New_York
 
-# Build settings
+# Author Information
+author:
+  name: Will Napolini
+  avatar: 'https://avatars.githubusercontent.com/u/192521042?v=4'
+  bio: 'Digital creator focusing on mindset, skillset, and toolset development'
+  links:
+    twitter: 'https://twitter.com/willnapolini'
+    github: 'https://github.com/willnapolini'
+    instagram: 'https://instagram.com/willnapolini'
+    telegram: 'https://t.me/willnapolini'
+
+# Build Settings
 markdown: kramdown
+highlighter: rouge
 theme: minima
 plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-seo-tag
+  - jekyll-paginate-v2
+  - jekyll-avatar
+  - jekyll-include-cache
+
+# Advanced Markdown Processing
+kramdown:
+  input: GFM
+  syntax_highlighter_opts:
+    css_class: 'highlight'
+    span:
+      line_numbers: false
+    block:
+      line_numbers: true
+      start_line: 1
 
 # Collections
 collections:
   posts:
     output: true
-    permalink: /blog/:title/
+    permalink: /blog/:year/:month/:title/
+    sort_by: date
+    sort_direction: descending
   shop_items:
     output: true
-    permalink: /shop/:title/
+    permalink: /shop/:collection/:title/
+    sort_by: price
+    sort_direction: ascending
 
-# Default values for posts
+# Pagination
+pagination:
+  enabled: true
+  per_page: 8
+  permalink: '/page/:num/'
+  limit: 0
+  sort_field: 'date'
+  sort_reverse: true
+  trail:
+    before: 2
+    after: 2
+
+# Default Values
 defaults:
   - scope:
       path: ''
@@ -31,42 +76,95 @@ defaults:
       layout: 'post'
       author: 'Will Napolini'
       image: '/assets/images/default-blog-image.jpg'
+      comments: true
+      share: true
+      categories: general
   - scope:
       path: ''
       type: 'shop_items'
     values:
       layout: 'shop_item'
       image: '/assets/images/default-shop-image.jpg'
+      price: 0.00
+      currency: USD
+      in_stock: true
+  - scope:
+      path: ''
+    values:
+      layout: 'default'
+      show_sidebar: true
+      show_related: true
 
-# Exclude from processing
+# SEO Configuration
+seo:
+  title: Will Napolini | Mindset • Skillset • Toolset
+  description: 'Personal site focusing on digital creation and personal development'
+  image: '/assets/images/social-card.jpg'
+  twitter:
+    card: summary_large_image
+    username: willnapolini
+  og:
+    type: website
+    locale: en_US
+    site_name: Will Napolini
+
+# PWA Configuration
+pwa:
+  manifest:
+    name: Will Napolini
+    short_name: WNapo
+    description: 'Mindset • Skillset • Toolset'
+    start_url: '/'
+    background_color: '#ffffff'
+    theme_color: '#0CB8E0'
+    display: standalone
+    icons:
+      - src: '/assets/icons/icon-192x192.png'
+        sizes: '192x192'
+        type: 'image/png'
+      - src: '/assets/icons/icon-512x512.png'
+        sizes: '512x512'
+        type: 'image/png'
+  service_worker:
+    src: '/sw.js'
+    scope: '/'
+    offline_page: '/offline.html'
+
+# Performance Optimization
+compress_html:
+  clippings: all
+  comments: all
+  endings: all
+  blanklines: false
+  profile: false
+
+# Exclusions
 exclude:
   - Gemfile
   - Gemfile.lock
   - node_modules
+  - vendor
   - package.json
   - package-lock.json
+  - yarn.lock
   - README.md
-  - todo.md
+  - TODO.md
+  - LICENSE
+  - .gitignore
+  - .sass-cache
+  - .jekyll-cache
+  - .bundle
+  - .vscode
+  - .idea
+  - _drafts
 
-# SEO Tag settings
-seo_tag:
-  image: /assets/icons/icon-512x512.png
-  twitter:
-    username: willnapolini
-  social:
-    name: Will Napolini
-    links:
-      - https://twitter.com/willnapolini
-      - https://github.com/willnapolini
-      - https://instagram.com/willnapolini
-      - https://t.me/willnapolini
+# SASS Configuration
+sass:
+  sass_dir: _sass
+  style: compressed
+  sourcemap: never
 
-# PWA settings
-service_worker:
-  src: /sw.js
-  scope: /
-
-# Custom variables (for use in layouts)
-author_avatar: 'https://avatars.githubusercontent.com/u/192521042?v=4'
-
-
+# Development Settings (overrides in _config_dev.yml)
+future: false
+incremental: false
+watch: true
