@@ -598,9 +598,8 @@ p {
 
 .author-info {
   display: flex;
-  flex-direction: column;
-  gap: 4px; /* Adjust this value as needed */
-  align-items: flex-start;
+  gap: 8px; /* Space between avatar and text */
+  align-items: flex-start; /* Align items to top */
 }
 
 .author-avatar {
@@ -613,10 +612,10 @@ p {
   flex-shrink: 0; /* Prevents avatar from shrinking */
 }
 
-.author-text {
+.author-details {
   display: flex;
-  flex-direction: column; /* Stacks name and date vertically */
-  gap: 2px; /* Small spacing between name and date */
+  flex-direction: column; /* Stack name and date vertically */
+  gap: 2px; /* Space between name and date */
 }
 
 .author-name {
@@ -626,7 +625,6 @@ p {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  white-space: nowrap; /* Prevents text from wrapping */
 }
 
 .post-date {
